@@ -1,0 +1,1 @@
+# gtm-json-cookie-reader
