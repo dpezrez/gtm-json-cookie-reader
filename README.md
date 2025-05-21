@@ -22,7 +22,7 @@ Built by [Daniel Perry-Reed](https://www.linkedin.com/in/danielperryreed/) – m
 ### 1. Add the Custom Variable Template
 
 * In GTM, go to **Templates** > **New Variable Template**
-* Paste in the JavaScript from `json_cookie_reader.js` [here](./json_cookie_reader.js)
+* Paste in the JavaScript from `json_cookie_reader.js` [here](./json_cookie_reader_template.js)
 * Configure the permissions (see below)
 * Save and name your variable template (e.g. "JSON Cookie Reader")
 
