@@ -1,0 +1,53 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2025-05-21 16:25:45",
+    "containerVersion": {
+        "path": "accounts/6251493524/containers/196477180/versions/0",
+        "accountId": "6251493524",
+        "containerId": "196477180",
+        "containerVersionId": "0",
+        "container": {
+            "path": "accounts/6251493524/containers/196477180",
+            "accountId": "6251493524",
+            "containerId": "196477180",
+            "name": "dtv.dev - web",
+            "publicId": "GTM-M3GW2362",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1727788582670",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6251493524/containers/196477180/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-M3GW2362"
+            ]
+        },
+        "fingerprint": "1747844745663",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6251493524/containers/196477180/versions/0?apiLink=version",
+        "customTemplate": [
+            {
+                "accountId": "6251493524",
+                "containerId": "196477180",
+                "templateId": "41",
+                "name": "JSON Cookie Reader",
+                "fingerprint": "1747843465721",
+                "templateData": "___INFO___\n\n{\n  \"type\": \"MACRO\",\n  \"id\": \"cvt_temp_public_id\",\n  \"version\": 1,\n  \"securityGroups\": [],\n  \"displayName\": \"JSON Cookie Reader\",\n  \"description\": \"Reads an 1st party cookie values that use a JSON format. Specify the cookie name and key to use the value as a variable in GTM. By Daniel Perry-Reed @ Data to Value.\",\n  \"containerContexts\": [\n    \"WEB\"\n  ]\n}\n\n\n___TEMPLATE_PARAMETERS___\n\n[\n  {\n    \"type\": \"TEXT\",\n    \"name\": \"cookieName\",\n    \"displayName\": \"Cookie Name\",\n    \"simpleValueType\": true\n  },\n  {\n    \"type\": \"TEXT\",\n    \"name\": \"jsonKey\",\n    \"displayName\": \"Key to Extract (e.g. utm_source or click_id.value)\",\n    \"simpleValueType\": true\n  }\n]\n\n\n___SANDBOXED_JS_FOR_WEB_TEMPLATE___\n\n/*\nBuilt by Daniel Perry-Reed @ Data to Value\nhttps://datatovalue.com/\n*/\n\n// === IMPORTS ===\nconst getCookieValues = require('getCookieValues');\nconst decodeUriComponent = require('decodeUriComponent');\nconst JSON = require('JSON');\n\n// === Settings from template fields ===\nconst cookieName = data.cookieName || 'gtm_attr';\nconst jsonPath = data.jsonKey || '';\n\n// === Read and decode the cookie ===\nconst raw = getCookieValues(cookieName)[0];\nif (!raw) return '';\n\nconst decoded = decodeUriComponent(raw);\nif (!decoded) return '';\n\nconst obj = JSON.parse(decoded);\nif (!obj) return '';\n\n// === Path-based retrieval (e.g. click_id.type) ===\nconst path = jsonPath.split('.');\nlet current = obj;\n\nfor (let i = 0; i < path.length; i++) {\n  if (typeof current !== 'object' || current === null) {\n    return '';\n  }\n  current = current[path[i]];\n}\n\nreturn (typeof current === 'undefined' || current === null) ? '' : current;\n\n\n___WEB_PERMISSIONS___\n\n[\n  {\n    \"instance\": {\n      \"key\": {\n        \"publicId\": \"get_cookies\",\n        \"versionId\": \"1\"\n      },\n      \"param\": [\n        {\n          \"key\": \"cookieAccess\",\n          \"value\": {\n            \"type\": 1,\n            \"string\": \"any\"\n          }\n        }\n      ]\n    },\n    \"clientAnnotations\": {\n      \"isEditedByUser\": true\n    },\n    \"isRequired\": true\n  }\n]\n\n\n___TESTS___\n\nscenarios: []\n\n\n___NOTES___\n\n\n\n\n"
+            }
+        ]
+    }
+}
